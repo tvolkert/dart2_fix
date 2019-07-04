@@ -285,7 +285,7 @@ Future<String> _uriDownload(String uri) async {
 
   Completer<String> completer = new Completer<String>();
   StringBuffer contents = new StringBuffer();
-  response.transform(utf8.decoder).listen((String data) {
+  utf8.decoder.bind(response).listen((String data) {
     contents.write(data);
   }, onDone: () => completer.complete(contents.toString()));
   return completer.future;
